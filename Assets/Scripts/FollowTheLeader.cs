@@ -27,7 +27,7 @@ public class FollowTheLeader : MonoBehaviour
     private bool ghosting = false;
     public static int totalPoints = 0;
     private Vector3 lastDirection = Vector3.zero;
-    private TextMeshProUGUI score = null;
+    public TextMeshProUGUI score = null;
 
     void Start()
     {
@@ -45,8 +45,8 @@ public class FollowTheLeader : MonoBehaviour
             Debug.Assert(!myColor.Equals(Color.clear));
         }
 
-        score = FindFirstObjectByType<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
-        Debug.Assert(score != null);
+        //score = FindFirstObjectByType<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
+        //Debug.Assert(score != null);
         score.text = "Score: " + totalPoints;
 
         // Initial player slime MUST be named "Player" in the scene object hierarchy or have the player tag
@@ -55,9 +55,9 @@ public class FollowTheLeader : MonoBehaviour
         {
             lineLeader = true;
             Debug.Assert(Camera.main.GetComponent<FollowTheLeader>() != null);
-            Debug.Assert(Camera.main.GetComponent<CameraControls>() != null);
+            //Debug.Assert(Camera.main.GetComponent<CameraControls>() != null);
             Camera.main.GetComponent<FollowTheLeader>().inFrontOfMe = GetComponent<FollowTheLeader>();
-            Camera.main.GetComponent<CameraControls>().lookAtPosition = transform;
+            //Camera.main.GetComponent<CameraControls>().lookAtPosition = transform;
             hat.inFrontOfMe = GetComponent<FollowTheLeader>();
         } else
         {
@@ -124,7 +124,7 @@ public class FollowTheLeader : MonoBehaviour
         if (hasClickMove)
             newLeader.GetComponent<ClickMoveTowards>().enabled = true;
         Camera.main.GetComponent<FollowTheLeader>().inFrontOfMe = newLeader;
-        Camera.main.GetComponent<CameraControls>().lookAtPosition = newLeader.transform;
+        //Camera.main.GetComponent<CameraControls>().lookAtPosition = newLeader.transform;
         hat.inFrontOfMe = newLeader;
         newLeader.lineLeader = true;
         newLeader.leaderSwapTime = Time.time + leaderSwapCooldown;
